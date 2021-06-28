@@ -1,5 +1,6 @@
 package com.demo.aparna.project.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,35 +77,55 @@ public class RestaurantController {
 		restaurant.setPhonenumber(restoDetails.getPhonenumber());
 		restaurant.setOpentime(restoDetails.getOpentime());
 		restaurant.setClosetime(restoDetails.getClosetime());
+		restaurant.setFlag(restoDetails.isFlag());// set flag change
 		final Restaurant updatedRestaurant = restaurantRepo.save(restaurant);
 		return ResponseEntity.ok(updatedRestaurant);
+	}
+
+	// change status
+
+	@GetMapping("/changestatus/{id}")
+	public ResponseEntity<Restaurant> changeStatus(@PathVariable Long id) throws Exception {
+		boolean isActive = true;
+		Restaurant resto = restaurantRepo.findById(id).orElseThrow(() -> new Exception());
+
+		if (resto.isFlag()) {
+			isActive = false;
+		}
+
+		resto.setFlag(isActive);
+		Date d = new Date();
+		String date = d.toString();
+		resto.setLastUpdatedTime(date.substring(4));
+		Restaurant changeStatus = restaurantRepo.save(resto);
+		return ResponseEntity.ok(resto);
+
 	}
 
 	// image controller
 
 	@PutMapping("/updaterestimage/{id}")
 	public String imageUpload(@RequestParam MultipartFile file, @PathVariable Long id) {
-		System.out.println(" In post of File :" + file.getName() + "---" + file.getContentType() + "---"
+		System.out.println(" In put of File :" + file.getName() + "---" + file.getContentType() + "---"
 				+ file.getOriginalFilename());
 		return restaurantService.uploadImage(file, id);
 
 	}
 
-	@GetMapping("/{filename}/{id}")
+	@GetMapping("/{id}/{filename}")
 	// @GetMapping("/file/{name}")
-	public ResponseEntity<byte[]> getFileByName(@PathVariable String filename, @PathVariable Long id) {
+	public ResponseEntity<byte[]> getFileByName(@PathVariable Long id, @PathVariable String filename) {
 		System.out.println("name=" + filename + "Id=" + id);
-		Optional<Restaurant> fileOptional = restaurantRepo.findByNameAndId(filename, id);
-
+		Optional<Restaurant> fileOptional = restaurantRepo.findByFilenameAndId(filename, id);
+		System.out.println("fileoptional---------------" + fileOptional);
 		if (fileOptional.isPresent()) {
 			Restaurant file = fileOptional.get();
 			return ResponseEntity.ok()
-					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 					.body(file.getPic());
 		}
 
 		return ResponseEntity.status(404).body(null);
 	}
-	
 
 }

@@ -1,6 +1,8 @@
 package com.demo.aparna.project.model;
 
 
+import java.util.Arrays;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,12 +49,15 @@ public class Restaurant  {
 //	@Column(name = "pic")
 	private byte[] pic;
 
+	
+	private String lastUpdatedTime;
+	
 	public Restaurant() {
 		super();
 	}
 
 	public Restaurant(String name, String phonenumber, String address, String opentime, String closetime, boolean flag,
-			String filename, String mimetype, byte[] pic) {
+			String filename, String mimetype, byte[] pic,String lastUpdatedTime) {
 		super();
 		this.name = name;
 		this.phonenumber = phonenumber;
@@ -63,6 +68,7 @@ public class Restaurant  {
 		this.filename = filename;
 		this.mimetype = mimetype;
 		this.pic = pic;
+		this.lastUpdatedTime=lastUpdatedTime;
 	}
 
 	public Long getId() {
@@ -145,10 +151,23 @@ public class Restaurant  {
 		this.pic = pic;
 	}
 
+	
+	public String getLastUpdatedTime() {
+		return lastUpdatedTime;
+	}
+
+	public void setLastUpdatedTime(String lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Restaurant [id=" + id + ", name=" + name + ", phonenumber=" + phonenumber + ", address=" + address
-				+ ", opentime=" + opentime + ", closetime=" + closetime + ", flag=" + flag + "]";
+				+ ", opentime=" + opentime + ", closetime=" + closetime + ", flag=" + flag + ", filename=" + filename
+				+ ", mimetype=" + mimetype + ", pic=" + Arrays.toString(pic) + ", lastUpdatedTime=" + lastUpdatedTime
+				+ "]";
 	}
+
+	
 
 }

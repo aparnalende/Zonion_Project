@@ -1,5 +1,6 @@
 package com.demo.aparna.project.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,50 +15,58 @@ import com.demo.aparna.project.repository.RestaurantRepository;
 public class RestaurantServiceImpl implements RestaurantService {
 
 	@Autowired
-	private RestaurantRepository restaurantReposotory;
+	private RestaurantRepository restaurantRepository;
 
 	@Override
 	public Restaurant addResto(Restaurant resto) {
-		Restaurant saveResto = restaurantReposotory.save(resto);
+		Date d = new Date();
+		String date = d.toString();
+		resto.setLastUpdatedTime(date.substring(4));
+		Restaurant saveResto = restaurantRepository.save(resto);
+
 		return saveResto;
 	}
 
 	@Override
 	public Optional<Restaurant> getResto(Long id) {
-		Optional<Restaurant> getRest = restaurantReposotory.findById(id);
+		Optional<Restaurant> getRest = restaurantRepository.findById(id);
 		return getRest;
 	}
 
 	@Override
 	public List<Restaurant> getAllResto() {
-		List<Restaurant> list = restaurantReposotory.findAll();
+		List<Restaurant> list = restaurantRepository.findAll();
 		return list;
 	}
 
 	@Override
 	public Restaurant updateResto(Restaurant resto) {
-		Restaurant rest = restaurantReposotory.save(resto);
+
+		Date d = new Date();
+		String date = d.toString();
+		resto.setLastUpdatedTime(date.substring(4));
+		Restaurant rest = restaurantRepository.save(resto);
 		return rest;
 	}
 
 	@Override
 	public void deleteResto(Long id) {
-		restaurantReposotory.deleteById(id);
+		restaurantRepository.deleteById(id);
 
 	}
 
 	@Override
 	public String uploadImage(MultipartFile file, Long id) {
 
-		Optional<Restaurant> restData = restaurantReposotory.findById(id);
+		Optional<Restaurant> restData = restaurantRepository.findById(id);
 		try {
 			if (restData.isPresent()) {
 				Restaurant restModel = restData.get();
-				restModel.setName(file.getOriginalFilename());
+				restModel.setFilename(file.getOriginalFilename());
 				restModel.setMimetype(file.getContentType());
 				restModel.setPic(file.getBytes());
 
-				restaurantReposotory.save(restModel);
+				restaurantRepository.save(restModel);
 
 			}
 			System.out.println("File uploaded successfully! -> filename = " + file.getOriginalFilename());

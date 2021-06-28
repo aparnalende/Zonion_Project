@@ -10,5 +10,5 @@ import com.demo.aparna.project.model.Restaurant;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-	public Optional<Restaurant> findByNameAndId(String filename, Long id);
+	public Optional<Restaurant> findByFilenameAndId(String filename, Long id);
 }

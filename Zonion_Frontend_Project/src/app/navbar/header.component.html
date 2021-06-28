@@ -1,0 +1,48 @@
+<mat-toolbar style="height: 40px">
+  <button
+    routerLink=""
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>local_restaurant</mat-icon>
+  </button>
+  <span>Zonions</span>
+  <span class="example-spacer"></span>
+
+  <div class="mx-6" *ngIf="loginService.isUserLoggedIn()">
+    <button
+      routerLink="admin"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>person</mat-icon>
+    </button>
+    <span>Aparna</span>
+  </div>
+
+  <div *ngIf="!loginService.isUserLoggedIn()">
+    <button
+      routerLink="login"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>login </mat-icon>
+    </button>
+    <span>Login</span>
+  </div>
+
+  <div *ngIf="loginService.isUserLoggedIn()">
+    <button
+      routerLink="logout"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+    <span>Logout</span>
+  </div>
+</mat-toolbar>

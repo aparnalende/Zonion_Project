@@ -1,0 +1,63 @@
+<div class="header">
+  <div class="container" style="margin-left: 25%">
+    <div class="row" style="margin: 70px">
+      <div class="col-md-6 offset-9">
+        <mat-card>
+          <mat-card-title class="text-center h1">Login Here</mat-card-title>
+          <form (ngSubmit)="loginCheck()">
+            <!-- userName -->
+            <div class="mb-3">
+              <mat-form-field style="width: 100%">
+                <mat-label>User Name</mat-label>
+                <input
+                  type="text"
+                  required
+                  name="username"
+                  matInput
+                  placeholder="Enter Username"
+                  [(ngModel)]="username"
+                />
+                <mat-icon matSuffix>person_outline</mat-icon>
+                <!-- <mat-hint>user name should be unique</mat-hint> -->
+              </mat-form-field>
+            </div>
+            <!-- password -->
+            <div class="mb-3">
+              <mat-form-field style="width: 100%">
+                <mat-label>password</mat-label>
+                <input
+                  type="password"
+                  required
+                  name="password"
+                  matInput
+                  placeholder="Enter Password"
+                  
+                  [(ngModel)]="password"
+                />
+                <!-- <mat-error *ngIf="!pattern">
+                  password must contain 1 uppercase,1 lowercase,1 special character,number</mat-error
+                >  -->
+                <mat-icon matSuffix>lock_outline</mat-icon>
+
+              </mat-form-field>
+            </div>
+            <div class="text-center my-3">
+              <button type="submit" mat-raised-button color="primary">
+                Submit
+              </button>
+              <button
+                style="margin-left: 20px"
+                type="reset"
+                mat-raised-button
+                color="accent"
+                class="mx-5"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

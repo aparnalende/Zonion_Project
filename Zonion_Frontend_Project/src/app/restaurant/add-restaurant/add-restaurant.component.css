@@ -1,0 +1,27 @@
+mat-form-field {
+    width: 100%;
+    color: black;
+    font-weight: bold;
+  }
+  mat-card-actions{
+      margin-left: 50px;
+  }
+
+.mat-card-header{
+  background-color:red !important;
+  padding:5px !important;
+}
+
+ .mat-card{
+  padding:0 !important;
+  background-color: whitesmoke;
+  opacity: 0.7;
+}
+.mat-card::placeholder {
+  font-size: 10px;
+  color: 2px solid black;
+}
+
+.mat-card-content{
+  padding:5px !important;
+}

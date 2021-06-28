@@ -1,0 +1,56 @@
+
+<button (click)="back()" style="margin-left: 80%;margin-top: -70px; color: white; font-weight: bold;" class="demo-button">
+  Back 
+</button>
+
+
+<div
+  class="container mt-5"
+  style="margin-left: 30%; margin-top: auto; margin-right: 30%; padding: 40px"
+>
+  <div class="row">
+    <div class="col-md-6 col-sm-4 item">
+      <div class="card item-card card-block" style="margin-top: -20px;background-color:#C9D6FF;">
+        <h3><strong style="size: 40px;">Detail Of Restaurant</strong></h3>
+        <div style="margin-left: 10px">
+          <div style="margin-left: 10px;"><img [src]="url" style="height: 200px; width: 400px" /></div>
+          <table>
+            <tr>
+              <b>Restaurant Name:</b
+              >{{
+                restaurant.name
+              }}
+            </tr>
+            <tr>
+              <b>Address:</b
+              >{{
+                restaurant.address
+              }}
+            </tr>
+            <tr>
+              <b>Phone Number:</b
+              >{{
+                restaurant.phonenumber
+              }}
+            </tr>
+            <tr>
+              <b>Open Time:</b>
+              {{
+                restaurant.opentime
+              }}
+            </tr>
+            <tr>
+              <b>Close Time:</b>
+              {{
+                restaurant.closetime
+              }}
+            </tr>
+            <tr>
+              <b>Thank You For Visiting!!!!!!</b>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

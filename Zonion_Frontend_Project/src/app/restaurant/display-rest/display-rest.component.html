@@ -1,0 +1,93 @@
+<body>
+  <div class="panel-heading">
+    <h3 style="margin-top: -20px; margin-left: 40%; font-weight: bold">
+      Restaurant List
+    </h3>
+    <div style="margin-top: -50px">
+      <!-- Searching functioanlity --><label style="margin-left: 70%"
+        >Search :
+        <input
+          type="text"
+          placeholder="Type to search"
+          [(ngModel)]="searchText"
+          style="background-color: white;color: black;"
+        />
+      </label>
+    </div>
+  </div>
+  <div class="panel-body">
+    <table class="container">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Open Timing</th>
+          <th>Close Timing</th>
+          <th>Last Updated Time</th>
+          <th>Active/Deactive</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let rest of restArr
+              | filter: searchText
+              | orderBy: 'name'
+              | paginate: { itemsPerPage: 5, currentPage: p };
+            let i = index
+          "
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ rest.name }}</td>
+          <td>{{ rest.address }}</td>
+          <td>{{ rest.phonenumber }}</td>
+          <td>{{ rest.opentime }}</td>
+          <td>{{ rest.closetime }}</td>
+          <td>{{ rest.lastUpdatedTime }}</td>
+          <!-- <td>{{ rest.flag == true ? "Active" : "Deactive" }}</td> -->
+          <td>
+            <button (click)="changeStatus(rest.id)" class="demo-button">
+              {{ rest.flag == true ? "Active" : "Deactive" }}
+            </button>
+          </td>
+          <td>
+            <button
+              class="b1"
+              mat-icon-button
+              color="primary"
+              aria-label="Example icon-button with a edit icon"
+              (click)="editResto(rest.id)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              class="b2"
+              mat-icon-button
+              color="warn"
+              aria-label="Example icon-button with a delete icon"
+              (click)="deleteResto(rest.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              class="b3"
+              mat-icon-button
+              color="primary"
+              aria-label="Example icon-button with a visibility icon"
+              (click)="viewResto(rest.id)"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-left: 70%">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <!-- display method -->
+</body>

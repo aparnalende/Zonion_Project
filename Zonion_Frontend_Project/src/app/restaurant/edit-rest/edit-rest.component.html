@@ -1,0 +1,122 @@
+<section
+  style="
+    margin-left: 40%;
+    margin-right: 30%;
+    margin-top: -40px;
+    margin-bottom: -40px;
+  "
+>
+  <mat-card style="margin-right: 40px">
+    <!-- <mat-card-title>Add New Restaurant</mat-card-title> -->
+    <h4>Add New Restaurant</h4>
+    <form
+      [formGroup]="restaurantForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="updateRestaurant(restaurantForm.value)"
+    >
+      <mat-card-content>
+        <!-- Name -->
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Restourant's name"
+              formControlName="name"
+              id="name"
+              [(ngModel)]="restaurant.name"
+              required
+            />
+
+            <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+            <mat-error *ngIf="hasError('name', 'required')"
+              >Name is required</mat-error
+            >
+            <mat-error *ngIf="hasError('name', 'maxlength')"
+              >You have more than 60 characters</mat-error
+            >
+            <mat-error *ngIf="hasError('name', 'pattern')"
+              >Name contain does not contain special symbol</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <!-- address -->
+        <div>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <textarea
+              matInput
+              formControlName="address"
+              [(ngModel)]="restaurant.address"
+            ></textarea>
+            <mat-error *ngIf="hasError('address', 'required')">
+              Address is required</mat-error
+            >
+            <mat-error *ngIf="hasError('address', 'maxlength')"
+              >Address should be less than 200 characters</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <!-- phone number -->
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              type="number"
+              placeholder="Phone number"
+              formControlName="phonenumber"
+              required
+              maxlength="10"
+              [(ngModel)]="restaurant.phonenumber"
+            />
+            <mat-error *ngIf="hasError('phonenumber', 'required')"
+              >Phone number is required</mat-error
+            >
+            <mat-error *ngIf="hasError('phonenumber', 'pattern')"
+              >Enter only 10 digit Number starts with 7|8|9</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              type="time"
+              placeholder="Open Time"
+              formControlName="opentime"
+              #opentime
+              [(ngModel)]="restaurant.opentime"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="Close Time">
+            <input
+              matInput
+              type="time"
+              placeholder="Time of activity"
+              formControlName="closetime"
+              #closetime
+              [(ngModel)]="restaurant.closetime"
+            />
+          </mat-form-field>
+        </div>
+
+        <!--  -->
+        <mat-card-actions>
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="!restaurantForm.valid"
+            >
+              Update
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</section>
+<!-- <div>My form value: <br />{{ restaurantForm.value | json }}</div> -->

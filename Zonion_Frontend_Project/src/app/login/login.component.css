@@ -1,0 +1,15 @@
+.header {
+    height: 90vh;
+    width: 100%;
+    color: white;
+    background: linear-gradient(
+        to right,
+        rgba(1, 1, 14, 0.9),
+        rgba(235, 147, 147, 0.3)
+      );
+      opacity: 0.8;
+      /* url(https://images.pexels.com/photos/207253/pexels-photo-207253.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); */
+      /* url(https://images.pexels.com/photos/268966/pexels-photo-268966.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500); */
+    background-size: cover;
+  }
+  

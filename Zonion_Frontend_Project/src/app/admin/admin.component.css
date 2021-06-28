@@ -1,0 +1,26 @@
+.header {
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+}
+.demo-button {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: hsl(180, 62%, 28%);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px #999;
+}
+
+.demo-button:hover {
+  background-color: peru;
+}
+
+.demo-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

@@ -1,0 +1,68 @@
+<div class="header">
+  <div class="panel-heading">
+    <h2>Active Restaurants List</h2>
+  </div>
+  <!--  -->
+  <div style="margin-top: -50px">
+    <!-- Searching functioanlity -->
+    <label style="margin-left: 70%"
+      >Search :
+      <input
+        type="text"
+        placeholder="Type to search"
+        [(ngModel)]="searchText"
+        style="background-color: white; color: black"
+      />
+    </label>
+  </div>
+  <!--  -->
+  <div class="panel-body">
+    <table class="container" style="border: none">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Open Timing</th>
+          <th>Close Timing</th>
+          <th></th>
+        </tr>
+        <br />
+      </thead>
+      <tbody>
+        <ng-container
+          *ngFor="
+            let rest of restArr
+              | filter: searchText
+              | paginate: { itemsPerPage: 5, currentPage: p };
+            let i = index
+          "
+        >
+          <tr *ngIf="rest.flag">
+            <td>{{ rest.name }}</td>
+            <td>{{ rest.address }}</td>
+            <td>{{ rest.phonenumber }}</td>
+            <td>{{ rest.opentime }}</td>
+            <td>{{ rest.closetime }}</td>
+            <td>
+              <button
+                class="b3"
+                mat-icon-button
+                color="primary"
+                aria-label="Example icon-button with a visibility icon"
+                (click)="goToView(rest.id)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- display method -->
+  <div style="margin-left: 70%">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<router-outlet></router-outlet>>

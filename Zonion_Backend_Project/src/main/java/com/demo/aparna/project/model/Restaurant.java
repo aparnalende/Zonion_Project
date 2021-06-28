@@ -1,6 +1,5 @@
 package com.demo.aparna.project.model;
 
-
 import java.util.Arrays;
 
 import javax.persistence.Column;
@@ -12,52 +11,40 @@ import javax.persistence.Lob;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Restaurant  {
-	
-	
+public class Restaurant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-//	@Column(name = "name")
 	private String name;
 
-//	@Column(name = "phonenumber")
 	private String phonenumber;
 
-//	@Column(name = "address")
 	private String address;
 
-//	@Column(name = "opentime")
 	private String opentime;
 
-//	@Column(name = "opentime")
 	private String closetime;
 
 	private boolean flag = false;
 
-	// image adding code
-//	@Column(name = "filename")
 	@JsonView(View.FileInfo.class)
 	private String filename;
 
-//	@Column(name = "mimetype")
 	private String mimetype;
 
 	@Lob
-//	@Column(name = "pic")
 	private byte[] pic;
 
-	
 	private String lastUpdatedTime;
-	
+
 	public Restaurant() {
 		super();
 	}
 
 	public Restaurant(String name, String phonenumber, String address, String opentime, String closetime, boolean flag,
-			String filename, String mimetype, byte[] pic,String lastUpdatedTime) {
+			String filename, String mimetype, byte[] pic, String lastUpdatedTime) {
 		super();
 		this.name = name;
 		this.phonenumber = phonenumber;
@@ -68,7 +55,7 @@ public class Restaurant  {
 		this.filename = filename;
 		this.mimetype = mimetype;
 		this.pic = pic;
-		this.lastUpdatedTime=lastUpdatedTime;
+		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
 	public Long getId() {
@@ -151,7 +138,6 @@ public class Restaurant  {
 		this.pic = pic;
 	}
 
-	
 	public String getLastUpdatedTime() {
 		return lastUpdatedTime;
 	}
@@ -167,7 +153,5 @@ public class Restaurant  {
 				+ ", mimetype=" + mimetype + ", pic=" + Arrays.toString(pic) + ", lastUpdatedTime=" + lastUpdatedTime
 				+ "]";
 	}
-
-	
 
 }
